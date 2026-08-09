@@ -4,7 +4,7 @@
 
 OpenAstro OS for the **Raspberry Pi 3B+, 4, and 5**: a
 [Raspberry Pi OS Lite](https://www.raspberrypi.com/software/operating-systems/)
-(arm64, no GUI) based image with a WiFi access point and everything ready for
+(arm64, no GUI, Debian 13 "Trixie") based image with a WiFi access point and everything ready for
 [AlpacaBridge](https://github.com/open-astro/AlpacaBridge).
 
 **One image covers all three boards** — Raspberry Pi firmware selects the
@@ -88,11 +88,11 @@ Pi itself — it's a native chroot, no emulation):
 
 ```bash
 # 1. grab the latest Raspberry Pi OS Lite arm64 image
-wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-05-13/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2026-06-19/2026-06-18-raspios-trixie-arm64-lite.img.xz
 
 # 2. bake in the OpenAstro layer and repack
 sudo apt install parted e2fsprogs dosfstools
-sudo build/build-openastro-image.sh 2025-05-13-raspios-bookworm-arm64-lite.img.xz images/openastro-raspberrypi.img.xz
+sudo build/build-openastro-image.sh 2026-06-18-raspios-trixie-arm64-lite.img.xz images/openastro-raspberrypi.img.xz
 ```
 
 - [`build/build-openastro-image.sh`](build/build-openastro-image.sh) — customizes
