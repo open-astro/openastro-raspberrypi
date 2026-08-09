@@ -8,8 +8,8 @@
 # SSID gains a per-board suffix from the wlan0 MAC (e.g. OpenAstro-915D) so
 # multiple boards don't collide.
 #
-# AlpacaBridge is NOT included here - users install it from the OpenAstro apt
-# repository (apt install alpacabridge), same as the other platforms.
+# AlpacaBridge is preinstalled from the OpenAstro apt repository
+# (apt.openastro.net) and stays current with apt upgrade.
 #
 # The AP is a NetworkManager keyfile connection (mode=ap, ipv4.method=shared)
 # - 5 GHz ch36 by default (the 3B+/4/5 onboard Broadcom radios are all
@@ -233,4 +233,16 @@ echo "${OA_USER}:${OA_PASS}" | chpasswd
 systemctl disable userconfig.service 2>/dev/null || true
 rm -f /etc/ssh/sshd_config.d/rename_user.conf 2>/dev/null || true
 
-log "OpenAstro OS layer complete (WiFi AP + identity). Install AlpacaBridge with: apt install alpacabridge"
+# ============================================================
+# AlpacaBridge (preinstalled - the whole point of the appliance;
+# a dark site has no internet to apt install from)
+# ============================================================
+log "Installing AlpacaBridge from apt.openastro.net..."
+curl -fsSL https://apt.openastro.net/repo/openastro-archive-keyring.gpg \
+    | gpg --dearmor --yes -o /usr/share/keyrings/openastro-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/openastro-archive-keyring.gpg] https://apt.openastro.net trixie main" \
+    > /etc/apt/sources.list.d/openastro.list
+apt-get update -qq
+apt-get install -y -qq alpacabridge >/dev/null
+
+log "OpenAstro OS layer complete (WiFi AP + identity + AlpacaBridge)."

@@ -73,12 +73,12 @@ WiFi to client mode with `nmcli` (e.g.
 the hotspot; the upcoming AlpacaBridge WiFi manager will handle this from
 the web portal with automatic hotspot fallback).
 
-## Install AlpacaBridge
+## AlpacaBridge
 
-AlpacaBridge is **not** baked into the image. Install it by following the
-[AlpacaBridge install guide](https://github.com/open-astro/AlpacaBridge),
-which adds the OpenAstro apt repository and installs the package - the same
-as on every other platform.
+[AlpacaBridge](https://github.com/open-astro/AlpacaBridge) is **preinstalled**
+from the OpenAstro apt repository, so the board works at a dark site straight
+from the flash - no internet required. When the board does have internet, it
+stays current with `sudo apt update && sudo apt upgrade`.
 
 ## Build the image yourself
 
