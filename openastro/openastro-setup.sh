@@ -237,6 +237,10 @@ rm -f /etc/ssh/sshd_config.d/rename_user.conf 2>/dev/null || true
 # AlpacaBridge (preinstalled - the whole point of the appliance;
 # a dark site has no internet to apt install from)
 # ============================================================
+# Temporarily off by default: waiting on the next AlpacaBridge release
+# (new WiFi module). Flip to yes once it ships.
+INSTALL_ALPACABRIDGE="${INSTALL_ALPACABRIDGE:-no}"
+if [ "$INSTALL_ALPACABRIDGE" = yes ]; then
 log "Installing AlpacaBridge from apt.openastro.net..."
 curl -fsSL https://apt.openastro.net/repo/openastro-archive-keyring.gpg \
     | gpg --dearmor --yes -o /usr/share/keyrings/openastro-archive-keyring.gpg
@@ -244,5 +248,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/opena
     > /etc/apt/sources.list.d/openastro.list
 apt-get update -qq
 apt-get install -y -qq alpacabridge >/dev/null
+fi
 
 log "OpenAstro OS layer complete (WiFi AP + identity + AlpacaBridge)."
