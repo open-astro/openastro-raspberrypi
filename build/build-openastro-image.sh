@@ -4,7 +4,7 @@
 # Customizes a stock Raspberry Pi OS Lite (arm64, Trixie) image by running
 # the OpenAstro layer (openastro/openastro-setup.sh) inside a chroot, then
 # repacks it as a compressed, flashable image. The build host must be aarch64
-# (native chroot — no qemu), e.g. an arm64 Debian box or a Pi itself.
+# (native chroot - no qemu), e.g. an arm64 Debian box or a Pi itself.
 #
 # Usage: sudo build/build-openastro-image.sh <stock-raspios-lite.img[.xz]> [output.img.xz]
 #
@@ -13,13 +13,13 @@
 # package installs; RPi OS's own first-boot resize then expands it to fill
 # the SD card.
 #
-# AlpacaBridge is NOT baked in — users apt-install it after flashing.
+# AlpacaBridge is NOT baked in - users apt-install it after flashing.
 set -euo pipefail
 
 REPODIR="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="${1:?usage: $0 <stock-raspios-lite.img[.xz]> [output.img.xz]}"
 OUT="${2:-$REPODIR/images/openastro-raspberrypi.img.xz}"
-WORK="$(mktemp -d -p /var/tmp)"   # /var/tmp: disk-backed — the ~4G working image overflows a tmpfs /tmp
+WORK="$(mktemp -d -p /var/tmp)"   # /var/tmp: disk-backed - the ~4G working image overflows a tmpfs /tmp
 IMG="$WORK/openastro.img"
 MNT="$WORK/rootfs"
 LOOP=""
