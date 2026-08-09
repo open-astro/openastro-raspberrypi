@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build the OpenAstro Raspberry Pi OS image (one arm64 image for 3B+/4/5).
 #
-# Customizes a stock Raspberry Pi OS Lite (arm64, Bookworm) image by running
+# Customizes a stock Raspberry Pi OS Lite (arm64, Trixie) image by running
 # the OpenAstro layer (openastro/openastro-setup.sh) inside a chroot, then
 # repacks it as a compressed, flashable image. The build host must be aarch64
 # (native chroot — no qemu), e.g. an arm64 Debian box or a Pi itself.

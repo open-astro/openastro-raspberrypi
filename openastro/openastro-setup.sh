@@ -1,7 +1,7 @@
 #!/bin/bash
 # OpenAstro layer for Raspberry Pi (3B+, 4, 5 — one arm64 image fits all).
 #
-# This turns a stock Raspberry Pi OS Lite (arm64, Bookworm) image into the
+# This turns a stock Raspberry Pi OS Lite (arm64, Trixie) image into the
 # OpenAstro OS: a WiFi access point (OpenAstro-XXXX / 12345678), baked-in
 # credentials (astro/astro, no first-boot wizard), and the plumbing
 # AlpacaBridge expects. The OS runs from the microSD card. On first boot the
@@ -16,7 +16,7 @@
 # dual-band). Set AP_BAND=bg AP_CHANNEL=6 for a 2.4 GHz fallback if
 # range/mount compatibility needs it. The AP autoconnects at boot so the
 # board is always reachable via its own hotspot even when it can't be
-# reached over the local network. Raspberry Pi OS Bookworm already uses
+# reached over the local network. Raspberry Pi OS (Bookworm onwards) already uses
 # NetworkManager for all interfaces, so unlike the Orange Pi image there is
 # no systemd-networkd split: ethernet stays on NM's default DHCP.
 #
@@ -42,7 +42,7 @@ log() { echo "[openastro] $*"; }
 log "Installing packages..."
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
-# network-manager and dnsmasq-base are preinstalled on RPi OS Bookworm, but
+# network-manager and dnsmasq-base are preinstalled on RPi OS, but
 # be explicit so this script also converts a stripped-down base.
 apt-get install -y -qq \
     network-manager dnsmasq-base iw wireless-regdb \
