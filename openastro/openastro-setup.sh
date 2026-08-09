@@ -1,5 +1,5 @@
 #!/bin/bash
-# OpenAstro layer for Raspberry Pi (3B+, 4, 5 — one arm64 image fits all).
+# OpenAstro layer for Raspberry Pi (3B+, 4, 5 - one arm64 image fits all).
 #
 # This turns a stock Raspberry Pi OS Lite (arm64, Trixie) image into the
 # OpenAstro OS: a WiFi access point (OpenAstro-XXXX / 12345678), baked-in
@@ -8,11 +8,11 @@
 # SSID gains a per-board suffix from the wlan0 MAC (e.g. OpenAstro-915D) so
 # multiple boards don't collide.
 #
-# AlpacaBridge is NOT included here — users install it from the OpenAstro apt
+# AlpacaBridge is NOT included here - users install it from the OpenAstro apt
 # repository (apt install alpacabridge), same as the other platforms.
 #
 # The AP is a NetworkManager keyfile connection (mode=ap, ipv4.method=shared)
-# — 5 GHz ch36 by default (the 3B+/4/5 onboard Broadcom radios are all
+# - 5 GHz ch36 by default (the 3B+/4/5 onboard Broadcom radios are all
 # dual-band). Set AP_BAND=bg AP_CHANNEL=6 for a 2.4 GHz fallback if
 # range/mount compatibility needs it. The AP autoconnects at boot so the
 # board is always reachable via its own hotspot even when it can't be
@@ -51,7 +51,7 @@ apt-get install -y -qq \
 # ============================================================
 # WiFi access point (NetworkManager)
 # ============================================================
-# The AP is an NM keyfile connection with mode=ap and ipv4.method=shared —
+# The AP is an NM keyfile connection with mode=ap and ipv4.method=shared -
 # NM's internal dnsmasq serves DHCP/DNS and sets up NAT to whatever uplink
 # exists. AlpacaBridge's WiFi manager drives this same NM setup over D-Bus
 # (polkit rule ships in the AlpacaBridge .deb).
@@ -94,7 +94,7 @@ method=disabled
 EOF
 chmod 600 /etc/NetworkManager/system-connections/OpenAstro-AP.nmconnection
 
-# Keyfile was just (re)written with the generic SSID — let the suffixer run
+# Keyfile was just (re)written with the generic SSID - let the suffixer run
 # again on next boot.
 rm -f /var/lib/openastro/ssid-set
 
@@ -140,7 +140,7 @@ EOF
 systemctl enable openastro-ssid.service >/dev/null 2>&1
 
 # Regdom for the 5 GHz AP. On Raspberry Pi OS WiFi is soft-blocked by rfkill
-# until a country is set — set it every way that sticks in a chroot.
+# until a country is set - set it every way that sticks in a chroot.
 iw reg set "${AP_COUNTRY}" 2>/dev/null || true
 raspi-config nonint do_wifi_country "${AP_COUNTRY}" >/dev/null 2>&1 || true
 cat > /etc/modprobe.d/openastro-regdom.conf <<EOF
@@ -157,7 +157,7 @@ log "WiFi AP configured (SSID: ${AP_SSID}, band ${AP_BAND} ch${AP_CHANNEL}, ${AP
 # First-boot reliability
 # ============================================================
 # The image build strips SSH host keys (unique per device). Regenerate them
-# before sshd starts — otherwise ssh.service fails on first boot
+# before sshd starts - otherwise ssh.service fails on first boot
 # ("Connection refused" until a reboot). RPi OS ships its own
 # regenerate_ssh_host_keys firstboot unit; this one is equivalent, ordered,
 # and idempotent, so it wins the race whichever runs first.
@@ -181,7 +181,7 @@ After=openastro-sshkeys.service
 Wants=openastro-sshkeys.service
 EOF
 systemctl enable openastro-sshkeys.service >/dev/null 2>&1
-# SSH is disabled by default on RPi OS Lite — enable it.
+# SSH is disabled by default on RPi OS Lite - enable it.
 systemctl enable ssh >/dev/null 2>&1
 
 # Persistent journal, so first-boot failures survive a power cycle and can
@@ -202,7 +202,7 @@ KERNEL=="hiddev*", ATTRS{idVendor}=="03c3", GROUP="users", MODE="0666"
 EOF
 
 # ============================================================
-# System identity (turnkey — no first-boot wizard)
+# System identity (turnkey - no first-boot wizard)
 # ============================================================
 log "Setting system identity..."
 OA_HOSTNAME="${OPENASTRO_HOSTNAME:-openastro}"
