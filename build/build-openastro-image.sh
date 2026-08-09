@@ -19,7 +19,7 @@ set -euo pipefail
 REPODIR="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="${1:?usage: $0 <stock-raspios-lite.img[.xz]> [output.img.xz]}"
 OUT="${2:-$REPODIR/images/openastro-raspberrypi.img.xz}"
-WORK="$(mktemp -d)"
+WORK="$(mktemp -d -p /var/tmp)"   # /var/tmp: disk-backed — the ~4G working image overflows a tmpfs /tmp
 IMG="$WORK/openastro.img"
 MNT="$WORK/rootfs"
 LOOP=""
