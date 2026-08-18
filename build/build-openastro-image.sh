@@ -13,7 +13,7 @@
 # package installs; RPi OS's own first-boot resize then expands it to fill
 # the SD card.
 #
-# AlpacaBridge is NOT baked in - users apt-install it after flashing.
+# AlpacaBridge (latest from apt.openastro.net, currently 3.5.1) is baked in.
 set -euo pipefail
 
 REPODIR="$(cd "$(dirname "$0")/.." && pwd)"
