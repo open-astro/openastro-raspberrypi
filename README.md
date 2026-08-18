@@ -16,7 +16,7 @@ card** - flash it, insert it, power on.
 | Device | Kernel | Status |
 |--------|--------|--------|
 | Raspberry Pi 5 | Raspberry Pi OS stock | ✅ Validated |
-| Raspberry Pi 4 / 400 | Raspberry Pi OS stock | ✅ Validated (Pi 4) |
+| Raspberry Pi 4 | Raspberry Pi OS stock | ✅ Validated |
 | Raspberry Pi 3B+ | Raspberry Pi OS stock | ✅ Validated |
 
 > **ZWO EAF/EFW:** the stock Raspberry Pi OS kernel ships with HIDRAW
