@@ -68,10 +68,9 @@ log in at `172.24.1.1`.
 
 All networking is managed by NetworkManager; `wlan0` runs the access point
 by default. To put the board on your LAN, use the ethernet port, or switch
-WiFi to client mode with `nmcli` (e.g.
-`sudo nmcli dev wifi connect <SSID> password <pass>` - note this takes down
-the hotspot; the upcoming AlpacaBridge WiFi manager will handle this from
-the web portal with automatic hotspot fallback).
+WiFi to client mode from AlpacaBridge's WiFi card in the web portal (or with
+`nmcli`, e.g. `sudo nmcli dev wifi connect <SSID> password <pass>` - note
+this takes down the hotspot).
 
 ## AlpacaBridge
 

@@ -237,9 +237,8 @@ rm -f /etc/ssh/sshd_config.d/rename_user.conf 2>/dev/null || true
 # AlpacaBridge (preinstalled - the whole point of the appliance;
 # a dark site has no internet to apt install from)
 # ============================================================
-# Temporarily off by default: waiting on the next AlpacaBridge release
-# (new WiFi module). Flip to yes once it ships.
-INSTALL_ALPACABRIDGE="${INSTALL_ALPACABRIDGE:-no}"
+# Installs the latest release (3.5.1+, with the WiFi module) from the repo.
+INSTALL_ALPACABRIDGE="${INSTALL_ALPACABRIDGE:-yes}"
 if [ "$INSTALL_ALPACABRIDGE" = yes ]; then
 log "Installing AlpacaBridge from apt.openastro.net..."
 curl -fsSL https://apt.openastro.net/repo/openastro-archive-keyring.gpg \
