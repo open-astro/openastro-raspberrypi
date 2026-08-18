@@ -16,8 +16,8 @@ card** - flash it, insert it, power on.
 | Device | Kernel | Status |
 |--------|--------|--------|
 | Raspberry Pi 5 | Raspberry Pi OS stock | 🚧 Pending validation |
-| Raspberry Pi 4 / 400 | Raspberry Pi OS stock | 🚧 Pending validation |
-| Raspberry Pi 3B+ | Raspberry Pi OS stock | 🚧 Pending validation |
+| Raspberry Pi 4 / 400 | Raspberry Pi OS stock | ✅ Validated (Pi 4) |
+| Raspberry Pi 3B+ | Raspberry Pi OS stock | ✅ Validated |
 
 > **ZWO EAF/EFW:** the stock Raspberry Pi OS kernel ships with HIDRAW
 > enabled, and the image bakes in a udev rule granting device access, so ZWO
