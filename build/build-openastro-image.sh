@@ -79,6 +79,10 @@ rm -rf "$MNT"/var/lib/apt/lists/* "$MNT"/var/log/* "$MNT"/tmp/* 2>/dev/null || t
 # openastro-setup.sh).
 install -d -m 2755 "$MNT/var/log/journal"
 chroot "$MNT" chgrp systemd-journal /var/log/journal 2>/dev/null || true
+# Appliance image: shed docs, man pages, and non-English locales.
+rm -rf "$MNT"/usr/share/doc/* "$MNT"/usr/share/man/* "$MNT"/usr/share/info/* 2>/dev/null || true
+find "$MNT/usr/share/locale" -mindepth 1 -maxdepth 1 \
+    ! -name 'en*' ! -name 'locale.alias' -exec rm -rf {} + 2>/dev/null || true
 rm -f "$MNT"/etc/ssh/ssh_host_*           # regenerated per-device on first boot
 : > "$MNT/etc/machine-id" 2>/dev/null || true
 rm -f "$MNT/etc/resolv.conf"              # don't ship the build host's DNS
@@ -95,6 +99,6 @@ losetup -d "$LOOP"; LOOP=""
 
 log "Compressing -> $OUT"
 mkdir -p "$(dirname "$OUT")"
-xz -T0 -6 -c "$IMG" > "$OUT"
+xz -T0 -9e -c "$IMG" > "$OUT"
 ( cd "$(dirname "$OUT")" && sha256sum "$(basename "$OUT")" > "$(basename "$OUT").sha256" )
 log "Done: $OUT ($(du -h "$OUT" | cut -f1))"
